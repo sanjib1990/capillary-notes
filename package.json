@@ -17,6 +17,7 @@
     "lodash": "^4.17.4"
   },
   "dependencies": {
-    "sweetalert2": "^6.6.5"
+    "sweetalert2": "^6.6.5",
+    "toastr": "^2.1.2"
   }
 }

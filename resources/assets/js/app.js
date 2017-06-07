@@ -4,6 +4,23 @@ let noteList    = {};
 let rawList     = [];
 let baseUri     = '/api/v1/notes';
 
+/**
+ * Toaster config.
+ */
+toastr.options  = {
+    "closeButton": true,
+    "preventDuplicates": true,
+    "extendedTimeOut": 0,
+    "tapToDismiss": true,
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut",
+    "newestOnTop": true,
+    "positionClass": "toast-top-right",
+    "timeOut": "10000"
+};
+
 $(function () {
     // Get all the notes for the user
     getNotes();
@@ -64,13 +81,15 @@ function getParams() {
 
     params.title    = $("#title").val().trim();
     if (empty(params.title)) {
-        alert('Please enter Title');
+        $("#title").focus();
+        toastr.error('Title is required');
         return false;
     }
 
     params.notes    = $("#note").val().trim();
     if (empty(params.notes)) {
-        alert('Please enter Notes.');
+        $("#note").focus();
+        toastr.error('Notes is required');
         return false;
     }
 
@@ -155,7 +174,8 @@ function createNote (data) {
             );
         },
         error   : function (error) {
-            console(error);
+            validationError(error);
+            console.log(error);
             hideLoader();
         }
     });
@@ -193,7 +213,8 @@ function updateNote (uuid, data) {
             )
         },
         error   : function (error) {
-            console(error);
+            validationError(error);
+            console.log(error);
             hideLoader();
         }
     });
@@ -251,7 +272,8 @@ function deleteNote (uuid) {
                 )
             },
             error   : function (error) {
-                console(error);
+                validationError(error);
+                console.log(error);
                 hideLoader();
             }
         });
@@ -405,4 +427,17 @@ function removeByAttr(arr, attr, value){
         }
     }
     return arr;
+}
+
+/**
+ * Show validation errors.
+ *
+ * @param error
+ */
+function validationError(error) {
+    if (error.status == 400) {
+        $.each(error.responseJSON.data.validation, function (key, value) {
+            toastr.error(value, error.responseJSON.message);
+        });
+    }
 }

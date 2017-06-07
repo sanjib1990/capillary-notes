@@ -23,7 +23,7 @@ class NotesRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required | unique:notes,title,null,id,cookie_id,'.request()->cookie_id,
             'notes' => 'required'
         ];
     }
