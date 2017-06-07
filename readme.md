@@ -1,3 +1,5 @@
+The Code is deployed in AWS instance. The base URL is `http://54.169.110.200/`
+
 ## Requirement
 
 > PHP 7
