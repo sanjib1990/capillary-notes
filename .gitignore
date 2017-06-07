@@ -15,3 +15,5 @@ npm-debug.log
 /public/fonts/
 /public/js/
 /public/mix-manifest.json
+/npm-debug.log
+/public/mix.js
