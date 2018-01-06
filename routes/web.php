@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/maps', function () {
+    return view('maps');
+})->name('map');

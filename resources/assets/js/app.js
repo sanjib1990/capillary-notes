@@ -48,7 +48,7 @@ $(function () {
 
     $(document).on('click', '.delete', function () {
         deleteNote($(this).data('uuid'));
-    })
+    });
 
     $(document).on('click', '.create_note', function () {
         let params  = getParams();
@@ -123,6 +123,7 @@ function getNotes () {
  * Render the notes list.
  *
  * @param list
+ * @param sort
  */
 function renderNotes (list, sort = true) {
     let html    = "";
@@ -441,3 +442,6 @@ function validationError(error) {
         });
     }
 }
+
+
+// FOR MAPS ---------------

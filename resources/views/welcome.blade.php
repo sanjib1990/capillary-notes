@@ -10,6 +10,9 @@
 <body>
 <div class="container">
     <div class="col-md-12 add_note_form">
+        <nav>
+            <a href="{!! route('map') !!}">MAP</a>
+        </nav>
         <div class="row">
             <div class="jumbotron">
                 <h2>Your Notes<span class="pull-right">
